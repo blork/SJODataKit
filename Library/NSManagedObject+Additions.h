@@ -6,9 +6,15 @@
 //
 
 #import <CoreData/CoreData.h>
+#import "Store.h"
 
 @interface NSManagedObject (Additions)
 + (NSString *)entityName;
 + (NSEntityDescription *)entityWithContext:(NSManagedObjectContext *)context;
 + (instancetype) insertInContext:(NSManagedObjectContext*) context;
++ (void) insertOrUpdate:(NSArray*)dictArray
+           forUniqueKey:(NSString*)key
+              withBlock:(void (^) (NSDictionary* dictionary, NSManagedObject* object))block
+                inStore:(Store *) store
+                  error:(NSError*)error;
 @end
