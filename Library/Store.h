@@ -9,7 +9,8 @@
 
 @interface Store : NSObject
 
-+ (void) saveContext;
-+ (NSManagedObjectContext*) privateContext;
+- (void) save;
+- (NSManagedObjectContext*) privateContext;
+- (NSManagedObjectContext*) mainContext;
 
 @end

@@ -19,7 +19,8 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
-    NSManagedObjectContext* context = [Store privateContext];
+    
+    NSManagedObjectContext* context = [self.store privateContext];
     [context performBlock:^{
         NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
         [fetchRequest setEntity:[Post entityWithContext:context]];
@@ -33,7 +34,15 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     //Saves changes in the application's managed object context before the application terminates.
-    [Store saveContext];
+    [self.store save];
+}
+
+-(Store *)store
+{
+    if (!_store) {
+        _store = [[Store alloc] init];
+    }
+    return _store;
 }
 
 @end
