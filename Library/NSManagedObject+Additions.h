@@ -14,7 +14,7 @@
 + (instancetype) insertInContext:(NSManagedObjectContext*) context;
 + (void) insertOrUpdate:(NSArray*)dictArray
            forUniqueKey:(NSString*)key
-              withBlock:(void (^) (NSDictionary* dictionary, NSManagedObject* object))block
+              withBlock:(void (^) (NSDictionary* dictionary, id managedObject))block
                 inStore:(Store *) store
                   error:(NSError*)error;
 @end

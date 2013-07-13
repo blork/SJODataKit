@@ -28,7 +28,7 @@
 
 + (void) insertOrUpdate:(NSArray*)dictArray
            forUniqueKey:(NSString*)key
-              withBlock:(void (^) (NSDictionary* dictionary, NSManagedObject* object))block
+              withBlock:(void (^) (NSDictionary* dictionary, id managedObject))block
                 inStore:(Store *) store
                   error:(NSError*)error
 {
@@ -66,7 +66,7 @@
                 }
                 object = [objectEnumerator nextObject];
             } else {
-                id newObject = [object insertInContext:context];
+                id newObject = [[self class] insertInContext:context];
                 if (block) {
                     block(dictionary, newObject);
                 }
