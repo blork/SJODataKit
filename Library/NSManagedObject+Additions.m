@@ -17,12 +17,12 @@
 
 + (NSEntityDescription *)entityWithContext:(NSManagedObjectContext *)context
 {
-	return [NSEntityDescription entityForName:[self entityName] inManagedObjectContext:context];
+	return [NSEntityDescription entityForName:[[self class] entityName] inManagedObjectContext:context];
 }
 
 + (instancetype) insertInContext:(NSManagedObjectContext *) context
 {
-    return [NSEntityDescription insertNewObjectForEntityForName:[self entityName]
+    return [NSEntityDescription insertNewObjectForEntityForName:[[self class] entityName]
                                          inManagedObjectContext:context];
 }
 
