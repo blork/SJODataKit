@@ -26,6 +26,11 @@
                                          inManagedObjectContext:context];
 }
 
++(NSFetchRequest*) fetchRequest
+{
+    return [NSFetchRequest fetchRequestWithEntityName:[[self class] entityName]];
+}
+
 + (void) insertOrUpdate:(NSArray*)dictArray
            forUniqueKey:(NSString*)key
               withBlock:(void (^) (NSDictionary* dictionary, id managedObject))block

@@ -12,6 +12,7 @@
 + (NSString *)entityName;
 + (NSEntityDescription *)entityWithContext:(NSManagedObjectContext *)context;
 + (instancetype) insertInContext:(NSManagedObjectContext*) context;
++ (NSFetchRequest*) fetchRequest;
 + (void) insertOrUpdate:(NSArray*)dictArray
            forUniqueKey:(NSString*)key
               withBlock:(void (^) (NSDictionary* dictionary, id managedObject))block
