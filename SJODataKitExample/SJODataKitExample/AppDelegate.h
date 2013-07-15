@@ -13,6 +13,6 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
-@property (strong, nonatomic) Store *store;
+@property (strong, nonatomic) SJODataStore *store;
 
 @end

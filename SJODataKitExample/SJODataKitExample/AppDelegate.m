@@ -37,10 +37,10 @@
     [self.store save];
 }
 
--(Store *)store
+-(SJODataStore *)store
 {
     if (!_store) {
-        _store = [[Store alloc] init];
+        _store = [[SJODataStore alloc] init];
     }
     return _store;
 }

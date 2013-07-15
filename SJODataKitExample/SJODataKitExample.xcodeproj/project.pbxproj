@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2218286017943523006139B0 /* NSManagedObject+SJODataKitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2218285A17943523006139B0 /* NSManagedObject+SJODataKitAdditions.m */; };
+		2218286117943523006139B0 /* SJODataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 2218285D17943523006139B0 /* SJODataStore.m */; };
+		2218286217943523006139B0 /* SJOSearchableFetchedResultsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2218285F17943523006139B0 /* SJOSearchableFetchedResultsController.m */; };
 		22D1B015179049B40037FA82 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22D1B014179049B40037FA82 /* UIKit.framework */; };
 		22D1B017179049B40037FA82 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22D1B016179049B40037FA82 /* Foundation.framework */; };
 		22D1B019179049B40037FA82 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22D1B018179049B40037FA82 /* CoreGraphics.framework */; };
@@ -18,12 +21,17 @@
 		22D1B02B179049B40037FA82 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22D1B02A179049B40037FA82 /* Default@2x.png */; };
 		22D1B02D179049B40037FA82 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22D1B02C179049B40037FA82 /* Default-568h@2x.png */; };
 		22D1B030179049B40037FA82 /* SJODataKitExample.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 22D1B02E179049B40037FA82 /* SJODataKitExample.xcdatamodeld */; };
-		22D1B03B17904DFF0037FA82 /* NSManagedObject+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 22D1B03817904DFF0037FA82 /* NSManagedObject+Additions.m */; };
-		22D1B03C17904DFF0037FA82 /* Store.m in Sources */ = {isa = PBXBuildFile; fileRef = 22D1B03A17904DFF0037FA82 /* Store.m */; };
 		22D1B042179051790037FA82 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 22D1B041179051790037FA82 /* Post.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2218285917943523006139B0 /* NSManagedObject+SJODataKitAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+SJODataKitAdditions.h"; sourceTree = "<group>"; };
+		2218285A17943523006139B0 /* NSManagedObject+SJODataKitAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+SJODataKitAdditions.m"; sourceTree = "<group>"; };
+		2218285B17943523006139B0 /* SJODataKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SJODataKit.h; sourceTree = "<group>"; };
+		2218285C17943523006139B0 /* SJODataStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SJODataStore.h; sourceTree = "<group>"; };
+		2218285D17943523006139B0 /* SJODataStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SJODataStore.m; sourceTree = "<group>"; };
+		2218285E17943523006139B0 /* SJOSearchableFetchedResultsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SJOSearchableFetchedResultsController.h; sourceTree = "<group>"; };
+		2218285F17943523006139B0 /* SJOSearchableFetchedResultsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SJOSearchableFetchedResultsController.m; sourceTree = "<group>"; };
 		22D1B011179049B40037FA82 /* SJODataKitExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SJODataKitExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22D1B014179049B40037FA82 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		22D1B016179049B40037FA82 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -39,11 +47,6 @@
 		22D1B02A179049B40037FA82 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		22D1B02C179049B40037FA82 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		22D1B02F179049B40037FA82 /* SJODataKitExample.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SJODataKitExample.xcdatamodel; sourceTree = "<group>"; };
-		22D1B03717904DFF0037FA82 /* NSManagedObject+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+Additions.h"; sourceTree = "<group>"; };
-		22D1B03817904DFF0037FA82 /* NSManagedObject+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+Additions.m"; sourceTree = "<group>"; };
-		22D1B03917904DFF0037FA82 /* Store.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Store.h; sourceTree = "<group>"; };
-		22D1B03A17904DFF0037FA82 /* Store.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Store.m; sourceTree = "<group>"; };
-		22D1B03D179050600037FA82 /* SJODataKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SJODataKit.h; sourceTree = "<group>"; };
 		22D1B040179051790037FA82 /* Post.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
 		22D1B041179051790037FA82 /* Post.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -63,11 +66,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2218285817943523006139B0 /* SJODataKit */ = {
+			isa = PBXGroup;
+			children = (
+				2218285917943523006139B0 /* NSManagedObject+SJODataKitAdditions.h */,
+				2218285A17943523006139B0 /* NSManagedObject+SJODataKitAdditions.m */,
+				2218285B17943523006139B0 /* SJODataKit.h */,
+				2218285C17943523006139B0 /* SJODataStore.h */,
+				2218285D17943523006139B0 /* SJODataStore.m */,
+				2218285E17943523006139B0 /* SJOSearchableFetchedResultsController.h */,
+				2218285F17943523006139B0 /* SJOSearchableFetchedResultsController.m */,
+			);
+			name = SJODataKit;
+			path = ../Library;
+			sourceTree = "<group>";
+		};
 		22D1B008179049B40037FA82 = {
 			isa = PBXGroup;
 			children = (
+				2218285817943523006139B0 /* SJODataKit */,
 				22D1B01C179049B40037FA82 /* SJODataKitExample */,
-				22D1B03617904DFF0037FA82 /* SJODataKit */,
 				22D1B013179049B40037FA82 /* Frameworks */,
 				22D1B012179049B40037FA82 /* Products */,
 			);
@@ -117,19 +135,6 @@
 				22D1B02C179049B40037FA82 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		22D1B03617904DFF0037FA82 /* SJODataKit */ = {
-			isa = PBXGroup;
-			children = (
-				22D1B03717904DFF0037FA82 /* NSManagedObject+Additions.h */,
-				22D1B03817904DFF0037FA82 /* NSManagedObject+Additions.m */,
-				22D1B03917904DFF0037FA82 /* Store.h */,
-				22D1B03A17904DFF0037FA82 /* Store.m */,
-				22D1B03D179050600037FA82 /* SJODataKit.h */,
-			);
-			name = SJODataKit;
-			path = ../Library;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -200,9 +205,10 @@
 				22D1B023179049B40037FA82 /* main.m in Sources */,
 				22D1B027179049B40037FA82 /* AppDelegate.m in Sources */,
 				22D1B030179049B40037FA82 /* SJODataKitExample.xcdatamodeld in Sources */,
-				22D1B03B17904DFF0037FA82 /* NSManagedObject+Additions.m in Sources */,
-				22D1B03C17904DFF0037FA82 /* Store.m in Sources */,
 				22D1B042179051790037FA82 /* Post.m in Sources */,
+				2218286117943523006139B0 /* SJODataStore.m in Sources */,
+				2218286017943523006139B0 /* NSManagedObject+SJODataKitAdditions.m in Sources */,
+				2218286217943523006139B0 /* SJOSearchableFetchedResultsController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -317,6 +323,7 @@
 				22D1B035179049B40037FA82 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
