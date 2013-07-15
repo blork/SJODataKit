@@ -5,41 +5,16 @@
 //  Copyright (c) 2013 Sam Oakley. All rights reserved.
 //
 
-#import "Store.h"
+#import "SJODataStore.h"
 
-@interface Store ()
-@property (nonatomic,strong,readwrite) NSManagedObjectContext* mainManagedObjectContext;
+@interface SJODataStore ()
+@property (nonatomic,strong,readwrite) NSManagedObjectContext* mainContext;
 @property (nonatomic,strong) NSManagedObjectModel* managedObjectModel;
 @property (nonatomic,strong) NSPersistentStoreCoordinator* persistentStoreCoordinator;
 
 @end
 
-@implementation Store
-
-+ (Store *)sharedInstance {
-    static dispatch_once_t pred;
-    static Store *shared = nil;
-    dispatch_once(&pred, ^{
-        shared = [[Store alloc] init];
-    });
-    return shared;
-}
-
-
-+ (void)saveContext
-{
-    NSError *error = nil;
-    NSManagedObjectContext *managedObjectContext = [[Store sharedInstance] mainManagedObjectContext];
-    if (managedObjectContext != nil) {
-        if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error]) {
-            // Replace this implementation with code to handle the error appropriately.
-            // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-            abort();
-        }
-    }
-}
-
+@implementation SJODataStore
 
 - (id)init
 {
@@ -50,24 +25,45 @@
                                                            queue:[NSOperationQueue mainQueue]
                                                       usingBlock:^(NSNotification* note)
          {
-             [self.mainManagedObjectContext mergeChangesFromContextDidSaveNotification:note];
+             [self.mainContext mergeChangesFromContextDidSaveNotification:note];
          }];
     }
     return self;
 }
 
 
+- (void)save
+{
+    NSError *error = nil;
+    if (_mainContext != nil) {
+        if ([_mainContext hasChanges] && ![_mainContext save:&error]) {
+            // Replace this implementation with code to handle the error appropriately.
+            // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+            abort();
+        }
+    }
+}
+
+- (NSManagedObjectContext*)privateContext
+{
+    NSManagedObjectContext* context = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+    context.persistentStoreCoordinator = [self persistentStoreCoordinator];
+    return context;
+}
+
+
 // Returns the managed object context for the application.
 // If the context doesn't already exist, it is created and bound to the persistent store coordinator for the application.
-- (NSManagedObjectContext *)mainManagedObjectContext
+- (NSManagedObjectContext *)mainContext
 {
-    if (_mainManagedObjectContext != nil) {
-        return _mainManagedObjectContext;
+    if (_mainContext != nil) {
+        return _mainContext;
     }
     
-    _mainManagedObjectContext = [[NSManagedObjectContext alloc] init];
-    _mainManagedObjectContext.persistentStoreCoordinator = [self persistentStoreCoordinator];
-    return _mainManagedObjectContext;
+    _mainContext = [[NSManagedObjectContext alloc] init];
+    _mainContext.persistentStoreCoordinator = [self persistentStoreCoordinator];
+    return _mainContext;
 }
 
 
@@ -145,12 +141,6 @@
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
 
-+ (NSManagedObjectContext*)privateContext
-{
-    NSManagedObjectContext* context = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
-    context.persistentStoreCoordinator = [[Store sharedInstance] persistentStoreCoordinator];
-    return context;
-}
 
 @end
 

@@ -18,3 +18,6 @@ DerivedData
 
 #CocoaPods
 Pods
+Library/--no-create-docset/docset-installed.txt
+Library/--no-create-docset../Docs/docset-installed.txt
+docset-installed.txt
