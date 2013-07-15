@@ -24,7 +24,7 @@
     [super viewDidLoad];
     
     UISearchBar *searchBar = [[UISearchBar alloc] init];
-    self.searchController = [[UISearchDisplayController alloc] initWithSearchBar:searchBar contentsController:self];
+    _searchController = [[UISearchDisplayController alloc] initWithSearchBar:searchBar contentsController:self];
     self.searchController.searchResultsDelegate = self;
     self.searchController.searchResultsDataSource = self;
     self.searchController.delegate = self;
