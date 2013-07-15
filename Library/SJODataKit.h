@@ -5,5 +5,5 @@
 //  Copyright (c) 2013 Sam Oakley. All rights reserved.
 //
 
-#import "Store.h"
+#import "SJODataStore.h"
 #import "NSManagedObject+Additions.h"

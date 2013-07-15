@@ -6,7 +6,7 @@
 //
 
 #import <CoreData/CoreData.h>
-#import "Store.h"
+#import "SJODataStore.h"
 
 @interface NSManagedObject (Additions)
 + (NSString *)entityName;
@@ -16,6 +16,6 @@
 + (void) insertOrUpdate:(NSArray*)dictArray
            forUniqueKey:(NSString*)key
               withBlock:(void (^) (NSDictionary* dictionary, id managedObject))block
-                inStore:(Store *) store
+                inStore:(SJODataStore *) store
                   error:(NSError*)error;
 @end

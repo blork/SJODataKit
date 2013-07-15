@@ -5,16 +5,16 @@
 //  Copyright (c) 2013 Sam Oakley. All rights reserved.
 //
 
-#import "Store.h"
+#import "SJODataStore.h"
 
-@interface Store ()
+@interface SJODataStore ()
 @property (nonatomic,strong,readwrite) NSManagedObjectContext* mainContext;
 @property (nonatomic,strong) NSManagedObjectModel* managedObjectModel;
 @property (nonatomic,strong) NSPersistentStoreCoordinator* persistentStoreCoordinator;
 
 @end
 
-@implementation Store
+@implementation SJODataStore
 
 - (id)init
 {

@@ -6,7 +6,7 @@
 //
 
 #import "NSManagedObject+Additions.h"
-#import "Store.h"
+#import "SJODataStore.h"
 
 @implementation NSManagedObject (Additions)
 
@@ -34,7 +34,7 @@
 + (void) insertOrUpdate:(NSArray*)dictArray
            forUniqueKey:(NSString*)key
               withBlock:(void (^) (NSDictionary* dictionary, id managedObject))block
-                inStore:(Store *) store
+                inStore:(SJODataStore *) store
                   error:(NSError*)error
 {
     NSManagedObjectContext* context = [store privateContext];

@@ -7,7 +7,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Store : NSObject
+@interface SJODataStore : NSObject
 
 - (void) save;
 - (NSManagedObjectContext*) privateContext;
