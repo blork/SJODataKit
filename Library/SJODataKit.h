@@ -6,4 +6,4 @@
 //
 
 #import "SJODataStore.h"
-#import "NSManagedObject+Additions.h"
+#import "NSManagedObject+SJODataKitAdditions.h"

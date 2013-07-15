@@ -5,10 +5,10 @@
 //  Copyright (c) 2013 Sam Oakley. All rights reserved.
 //
 
-#import "NSManagedObject+Additions.h"
+#import "NSManagedObject+SJODataKitAdditions.h"
 #import "SJODataStore.h"
 
-@implementation NSManagedObject (Additions)
+@implementation NSManagedObject (SJODataKitAdditions)
 
 + (NSString *)entityName
 {
