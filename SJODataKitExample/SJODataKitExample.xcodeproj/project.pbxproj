@@ -10,6 +10,7 @@
 		2218286017943523006139B0 /* NSManagedObject+SJODataKitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2218285A17943523006139B0 /* NSManagedObject+SJODataKitAdditions.m */; };
 		2218286117943523006139B0 /* SJODataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 2218285D17943523006139B0 /* SJODataStore.m */; };
 		2218286217943523006139B0 /* SJOSearchableFetchedResultsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2218285F17943523006139B0 /* SJOSearchableFetchedResultsController.m */; };
+		22182865179441DF006139B0 /* ExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22182864179441DF006139B0 /* ExampleViewController.m */; };
 		22D1B015179049B40037FA82 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22D1B014179049B40037FA82 /* UIKit.framework */; };
 		22D1B017179049B40037FA82 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22D1B016179049B40037FA82 /* Foundation.framework */; };
 		22D1B019179049B40037FA82 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22D1B018179049B40037FA82 /* CoreGraphics.framework */; };
@@ -32,6 +33,8 @@
 		2218285D17943523006139B0 /* SJODataStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SJODataStore.m; sourceTree = "<group>"; };
 		2218285E17943523006139B0 /* SJOSearchableFetchedResultsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SJOSearchableFetchedResultsController.h; sourceTree = "<group>"; };
 		2218285F17943523006139B0 /* SJOSearchableFetchedResultsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SJOSearchableFetchedResultsController.m; sourceTree = "<group>"; };
+		22182863179441DF006139B0 /* ExampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExampleViewController.h; sourceTree = "<group>"; };
+		22182864179441DF006139B0 /* ExampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExampleViewController.m; sourceTree = "<group>"; };
 		22D1B011179049B40037FA82 /* SJODataKitExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SJODataKitExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22D1B014179049B40037FA82 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		22D1B016179049B40037FA82 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -116,6 +119,8 @@
 				22D1B025179049B40037FA82 /* AppDelegate.h */,
 				22D1B026179049B40037FA82 /* AppDelegate.m */,
 				22D1B02E179049B40037FA82 /* SJODataKitExample.xcdatamodeld */,
+				22182863179441DF006139B0 /* ExampleViewController.h */,
+				22182864179441DF006139B0 /* ExampleViewController.m */,
 				22D1B040179051790037FA82 /* Post.h */,
 				22D1B041179051790037FA82 /* Post.m */,
 				22D1B01D179049B40037FA82 /* Supporting Files */,
@@ -207,6 +212,7 @@
 				22D1B030179049B40037FA82 /* SJODataKitExample.xcdatamodeld in Sources */,
 				22D1B042179051790037FA82 /* Post.m in Sources */,
 				2218286117943523006139B0 /* SJODataStore.m in Sources */,
+				22182865179441DF006139B0 /* ExampleViewController.m in Sources */,
 				2218286017943523006139B0 /* NSManagedObject+SJODataKitAdditions.m in Sources */,
 				2218286217943523006139B0 /* SJOSearchableFetchedResultsController.m in Sources */,
 			);
