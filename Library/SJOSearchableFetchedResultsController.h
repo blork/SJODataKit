@@ -39,8 +39,7 @@ This class provides a simpler way to replicate the often-used pattern of a searc
  */
 /**
  Configure a cell for display.
- @discussion Override this method in your subclass to customise the appearance of your cell - you can also call it within your `cellForRowAtIndexPath:` method.
- @param fetchedResultsController The `NSFetchedResultsController` that the cell's data is from.
+ @discussion Override this method in your subclass to customise the appearance of your cell.
  @param cell The cell to be displayed.
  @param indexPath The index path for the row.
  @warning This method must be overidden in your subclass.
