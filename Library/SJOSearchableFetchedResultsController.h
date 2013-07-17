@@ -5,6 +5,7 @@
 //  Copyright (c) 2013 Sam Oakley. All rights reserved.
 //
 
+#import <CoreData/CoreData.h>
 #import <Foundation/Foundation.h>
 
 

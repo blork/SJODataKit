@@ -5,6 +5,7 @@
 //  Copyright (c) 2013 Sam Oakley. All rights reserved.
 //
 
+#import <CoreData/CoreData.h>
 #import <Foundation/Foundation.h>
 /**
  This class manages the Core Data setup and initialisation for an application. The model is automatically loaed from the bundle, and lightweight migration is enabled.
