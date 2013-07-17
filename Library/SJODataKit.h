@@ -7,3 +7,4 @@
 
 #import "SJODataStore.h"
 #import "NSManagedObject+SJODataKitAdditions.h"
+#import "SJOSearchableFetchedResultsController.h"
