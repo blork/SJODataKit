@@ -26,6 +26,26 @@
                                          inManagedObjectContext:context];
 }
 
++ (instancetype)findByKey:(NSString *)key value:(id)value inContext:(NSManagedObjectContext *)context
+{
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K = %@", key, value];
+    NSFetchRequest *request = [[self class] fetchRequest];
+    [request setFetchLimit:1];
+    [request setPredicate:predicate];
+    NSArray *matching = [context executeFetchRequest:request error:nil];
+    return [matching lastObject];
+}
+
++ (instancetype)findOrInsertByKey:(NSString *)key value:(id)value inContext:(NSManagedObjectContext *)context
+{
+    id object = [[self class] findByKey:key value:value inContext:context];
+    if (!object) {
+        object = [[self class] insertInContext:context];
+        [object setValue:value forKey:key];
+    }
+    return object;
+}
+
 +(NSFetchRequest*) fetchRequest
 {
     return [NSFetchRequest fetchRequestWithEntityName:[[self class] entityName]];
@@ -82,5 +102,9 @@
     }];
 }
 
+-(void)delete
+{
+    [self.managedObjectContext deleteObject:self];
+}
 
 @end

@@ -34,6 +34,24 @@ Additions to NSManagedObject to reduce boilerplate and simplify common operation
 + (instancetype) insertInContext:(NSManagedObjectContext*) context;
 
 /**
+ Find an instance of `NSManagedObject` subclass in the `NSManagedObjectContext` matching the key and value.
+ @param key The name of the object property to match on.
+ @param value The value of the property specified by `key`.
+ @param context The `NSManagedObjectContext` to use.
+ @return The matching object, or nil if no match is found.
+ */
++ (instancetype)findByKey:(NSString *)key value:(id)value inContext:(NSManagedObjectContext *)context;
+
+/**
+ Find an instance of `NSManagedObject` subclass in the `NSManagedObjectContext` matching the key and value. If no match is found, a new object is inserted with the it's `key` value set appropriately.
+ @param key The name of the object property to match on.
+ @param value The value of the property specified by `key`.
+ @param context The `NSManagedObjectContext` to use.
+ @return An object retrieved from the context, or a new object inserted to the context with `key` set to `value`.
+ */
++ (instancetype)findOrInsertByKey:(NSString *)key value:(id)value inContext:(NSManagedObjectContext *)context;
+
+/**
  Returns a fetch request configured with a given entity name.
  @discussion This method provides a convenient way to create a fetch request without having to retrieve an NSEntityDescription object.
  @return A fetch request configured to fetch using the subclass' entity.
@@ -67,4 +85,10 @@ Additions to NSManagedObject to reduce boilerplate and simplify common operation
               withBlock:(void (^) (NSDictionary* dictionary, id managedObject))block
                 inStore:(SJODataStore *) store
                   error:(NSError*)error;
+
+/**
+ Delete the `NSManagedObjectContext` from its current context.
+ */
+- (void)delete;
+
 @end

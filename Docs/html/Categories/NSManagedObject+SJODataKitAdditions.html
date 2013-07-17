@@ -47,11 +47,20 @@
 	
 	<option value="//api/name/fetchRequest">&nbsp;&nbsp;&nbsp;&nbsp;+ fetchRequest</option>
 	
+	<option value="//api/name/findByKey:value:inContext:">&nbsp;&nbsp;&nbsp;&nbsp;+ findByKey:value:inContext:</option>
+	
+	<option value="//api/name/findOrInsertByKey:value:inContext:">&nbsp;&nbsp;&nbsp;&nbsp;+ findOrInsertByKey:value:inContext:</option>
+	
 	<option value="//api/name/insertInContext:">&nbsp;&nbsp;&nbsp;&nbsp;+ insertInContext:</option>
 	
 	<option value="//api/name/insertOrUpdate:forUniqueKey:withBlock:inStore:error:">&nbsp;&nbsp;&nbsp;&nbsp;+ insertOrUpdate:forUniqueKey:withBlock:inStore:error:</option>
 	
 	
+	
+	
+	<option value="instance_methods">Instance Methods</option>
+	
+	<option value="//api/name/delete">&nbsp;&nbsp;&nbsp;&nbsp;- delete</option>
 	
 	
 	
@@ -85,6 +94,10 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/fetchRequest">fetchRequest</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/findByKey:value:inContext:">findByKey:value:inContext:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/findOrInsertByKey:value:inContext:">findOrInsertByKey:value:inContext:</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/insertInContext:">insertInContext:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/insertOrUpdate:forUniqueKey:withBlock:inStore:error:">insertOrUpdate:forUniqueKey:withBlock:inStore:error:</a></span></li>
@@ -92,6 +105,12 @@
 </ul></li>
 
 
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/delete">delete</a></span></li>
+	
+</ul></li>
 
 
 			</ul>
@@ -161,6 +180,18 @@
 	
 </li><li>
 	<span class="tooltip">
+		<code><a href="#//api/name/findByKey:value:inContext:">+&nbsp;findByKey:value:inContext:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/findOrInsertByKey:value:inContext:">+&nbsp;findOrInsertByKey:value:inContext:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
 		<code><a href="#//api/name/fetchRequest">+&nbsp;fetchRequest</a></code>
 	</span>
 	
@@ -168,6 +199,12 @@
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/insertOrUpdate:forUniqueKey:withBlock:inStore:error:">+&nbsp;insertOrUpdate:forUniqueKey:withBlock:inStore:error:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/delete">&ndash;&nbsp;delete</a></code>
 	</span>
 	
 	
@@ -335,6 +372,138 @@
 </div>
 						
 						<div class="section-method">
+	<a name="//api/name/findByKey:value:inContext:" title="findByKey:value:inContext:"></a>
+	<h3 class="subsubtitle method-title">findByKey:value:inContext:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Find an instance of <code>NSManagedObject</code> subclass in the <code>NSManagedObjectContext</code> matching the key and value.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (instancetype)findByKey:(NSString *)<em>key</em> value:(id)<em>value</em> inContext:(NSManagedObjectContext *)<em>context</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>key</em></dt>
+			<dd><p>The name of the object property to match on.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>value</em></dt>
+			<dd><p>The value of the property specified by <code>key</code>.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>context</em></dt>
+			<dd><p>The <code>NSManagedObjectContext</code> to use.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>The matching object, or nil if no match is found.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Find an instance of <code>NSManagedObject</code> subclass in the <code>NSManagedObjectContext</code> matching the key and value.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">NSManagedObject+SJODataKitAdditions.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/findOrInsertByKey:value:inContext:" title="findOrInsertByKey:value:inContext:"></a>
+	<h3 class="subsubtitle method-title">findOrInsertByKey:value:inContext:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Find an instance of <code>NSManagedObject</code> subclass in the <code>NSManagedObjectContext</code> matching the key and value. If no match is found, a new object is inserted with the it&rsquo;s <code>key</code> value set appropriately.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (instancetype)findOrInsertByKey:(NSString *)<em>key</em> value:(id)<em>value</em> inContext:(NSManagedObjectContext *)<em>context</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>key</em></dt>
+			<dd><p>The name of the object property to match on.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>value</em></dt>
+			<dd><p>The value of the property specified by <code>key</code>.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>context</em></dt>
+			<dd><p>The <code>NSManagedObjectContext</code> to use.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>An object retrieved from the context, or a new object inserted to the context with <code>key</code> set to <code>value</code>.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Find an instance of <code>NSManagedObject</code> subclass in the <code>NSManagedObjectContext</code> matching the key and value. If no match is found, a new object is inserted with the it&rsquo;s <code>key</code> value set appropriately.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">NSManagedObject+SJODataKitAdditions.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/insertInContext:" title="insertInContext:"></a>
 	<h3 class="subsubtitle method-title">insertInContext:</h3>
 	
@@ -477,6 +646,53 @@
 					
 					
 					
+					<div class="section section-methods">
+						<a title="Instance Methods" name="instance_methods"></a>
+						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/delete" title="delete"></a>
+	<h3 class="subsubtitle method-title">delete</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Delete the <code>NSManagedObjectContext</code> from its current context.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)delete</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Delete the <code>NSManagedObjectContext</code> from its current context.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">NSManagedObject+SJODataKitAdditions.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
 					
 				</div>
 				<div class="main-navigation navigation-bottom">
@@ -488,7 +704,7 @@
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2013 Sam Oakley. All rights reserved. (Last updated: 2013-07-15)</span><br />
+						<p><span class="copyright">&copy; 2013 Sam Oakley. All rights reserved. (Last updated: 2013-07-17)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.1 (build 858)</a>.</span></p>
 						
