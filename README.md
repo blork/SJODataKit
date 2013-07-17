@@ -18,6 +18,15 @@ These methods never should __never__ be called directly on NSManagedObject (e.g.
 ###SJOSearchableFetchedResultsController
 This class provides a simpler way to replicate the often-used pattern of a searchable Core Data-backed table view. Must be used as a subclass.
 
+Usage
+=======
+Add the following to your `Podfile`:
+
+    pod 'SJODataKit', '~> 0.2'
+
+Import `SJODataKit.h` in your project.
+
+See the included example project for more details.
 
 License
 =======
