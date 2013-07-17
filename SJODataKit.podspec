@@ -15,5 +15,7 @@ Pod::Spec.new do |s|
   s.source_files = 'Library'
   s.public_header_files = 'Library/SJODataKit.h'
   
+  s.frameworks = 'CoreData'
+
   s.requires_arc = true
 end
