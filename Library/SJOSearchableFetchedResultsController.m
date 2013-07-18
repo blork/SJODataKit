@@ -238,6 +238,12 @@
                                scope:[self.searchController.searchBar selectedScopeButtonIndex]];
 }
 
+-(void)searchBar:(UISearchBar *)searchBar selectedScopeButtonIndexDidChange:(NSInteger)selectedScope
+{
+    [self filterContentForSearchText:searchBar.text
+                               scope:[self.searchController.searchBar selectedScopeButtonIndex]];
+}
+
 #pragma mark -
 #pragma mark Content Filtering
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSInteger)scope
