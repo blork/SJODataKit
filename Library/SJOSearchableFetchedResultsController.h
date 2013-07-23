@@ -56,5 +56,10 @@ This class provides a simpler way to replicate the often-used pattern of a searc
  */
 - (NSFetchRequest *)fetchRequestForSearch:(NSString *)searchString;
 
+/**
+Forced the specified fetched results controller to be recreated, causing performFetch to be fired again.
+ @param fetchedResultsController The NSFetchedResultsController to be reloaded
+ */
+- (void) reloadFetchedResultsController:(NSFetchedResultsController *)fetchedResultsController;
 
 @end

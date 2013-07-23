@@ -254,6 +254,13 @@
 
 #pragma mark -
 #pragma mark Content Filtering
+
+- (void) reloadFetchedResultsController:(NSFetchedResultsController*)fetchedResultsController
+{
+    fetchedResultsController.delegate = nil;
+    fetchedResultsController = nil;
+}
+
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSInteger)scope
 {
     // update the filter, in this case just blow away the FRC and let lazy evaluation create another with the relevant search info
