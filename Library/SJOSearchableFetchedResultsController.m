@@ -260,10 +260,12 @@
 #pragma mark -
 #pragma mark Content Filtering
 
-- (void) reloadFetchedResultsController:(NSFetchedResultsController*)fetchedResultsController
+- (void) reloadFetchedResultsControllers
 {
-    fetchedResultsController.delegate = nil;
-    fetchedResultsController = nil;
+    self.fetchedResultsController.delegate = nil;
+    self.fetchedResultsController = nil;
+    self.searchFetchedResultsController.delegate = nil;
+    self.searchFetchedResultsController = nil;
 }
 
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSInteger)scope
