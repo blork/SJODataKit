@@ -27,6 +27,14 @@ This class provides a simpler way to replicate the often-used pattern of a searc
  */
 @property (strong, nonatomic, readonly) UISearchDisplayController *searchController;
 
+
+/**
+ Returns the currently active `NSFetchedResultsController` (i.e. regular or search).
+ @return The `NSFetchedResultsController` that is currently active.
+ */
+- (NSFetchedResultsController *)activeFetchedResultsController;
+
+
 /**
  Returns the appropiate `NSFetchedResultsController` (i.e. regular or search) for the given `UITableView`.
  @param tableView The `UITableView` you wish to retrieve the `NSFetchedResultsController` for.

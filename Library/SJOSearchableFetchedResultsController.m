@@ -53,6 +53,11 @@
 #pragma mark -
 #pragma mark Fetched results controller data source
 
+- (NSFetchedResultsController *)activeFetchedResultsController
+{
+    return self.searchController.active ? self.searchFetchedResultsController : self.fetchedResultsController;
+}
+
 - (NSFetchedResultsController *)fetchedResultsControllerForTableView:(UITableView *)tableView
 {
     return tableView == self.tableView ? self.fetchedResultsController : self.searchFetchedResultsController;
