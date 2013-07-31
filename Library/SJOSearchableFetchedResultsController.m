@@ -37,17 +37,19 @@
 
 - (void)didReceiveMemoryWarning
 {
-    self.searchController.delegate = nil;
-    self.searchController.searchResultsDelegate = nil;
-    self.searchController.searchResultsDataSource = nil;
+    _searchController.delegate = nil;
+    _searchController.searchResultsDelegate = nil;
+    _searchController.searchResultsDataSource = nil;
+    _searchController = nil;
     [super didReceiveMemoryWarning];
 }
 
 -(void)dealloc
 {
-    self.searchController.delegate = nil;
-    self.searchController.searchResultsDelegate = nil;
-    self.searchController.searchResultsDataSource = nil;
+    _searchController.delegate = nil;
+    _searchController.searchResultsDelegate = nil;
+    _searchController.searchResultsDataSource = nil;
+    _searchController = nil;
 }
 
 #pragma mark -
