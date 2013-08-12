@@ -52,11 +52,20 @@ Additions to NSManagedObject to reduce boilerplate and simplify common operation
 + (instancetype)findOrInsertByKey:(NSString *)key value:(id)value inContext:(NSManagedObjectContext *)context;
 
 /**
- Returns a fetch request configured with a given entity name.
+ Returns a fetch request configured for the entity.
  @discussion This method provides a convenient way to create a fetch request without having to retrieve an NSEntityDescription object.
  @return A fetch request configured to fetch using the subclass' entity.
  */
 + (NSFetchRequest*) fetchRequest;
+
+/**
+ Returns a fetch request configured for the entity with a given predicate.
+ @discussion This method provides a convenient way to create a fetch request without having to retrieve an NSEntityDescription object.
+ @param predicate The `NSPredicate` to set on the fetch request.
+ @return A fetch request configured to fetch using the subclass' entity.
+ */
++(NSFetchRequest*) fetchRequestWithPredicate:(NSPredicate*)predicate;
+
 
 /**
  Perform a batch insert-or-update.
@@ -87,7 +96,7 @@ Additions to NSManagedObject to reduce boilerplate and simplify common operation
                   error:(NSError*)error;
 
 /**
- Delete the `NSManagedObjectContext` from its current context.
+ Delete the `NSManagedObject` from its current context.
  */
 - (void)delete;
 

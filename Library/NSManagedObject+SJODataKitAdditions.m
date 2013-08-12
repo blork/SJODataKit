@@ -51,6 +51,13 @@
     return [NSFetchRequest fetchRequestWithEntityName:[[self class] entityName]];
 }
 
++(NSFetchRequest*) fetchRequestWithPredicate:(NSPredicate*)predicate
+{
+    NSFetchRequest* fetchRequest = [[self class] fetchRequest];
+    [fetchRequest setPredicate:predicate];
+    return fetchRequest;
+}
+
 + (void) insertOrUpdate:(NSArray*)dictArray
            forUniqueKey:(NSString*)key
               withBlock:(void (^) (NSDictionary* dictionary, id managedObject))block
