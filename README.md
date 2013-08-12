@@ -22,7 +22,7 @@ Usage
 =======
 Add the following to your `Podfile`:
 
-    pod 'SJODataKit', '~> 0.2'
+    pod 'SJODataKit', :git => 'https://github.com/blork/SJODataKit.git'
 
 Import `SJODataKit.h` in your project.
 
