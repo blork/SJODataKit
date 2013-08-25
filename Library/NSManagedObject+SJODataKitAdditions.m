@@ -58,6 +58,14 @@
     return fetchRequest;
 }
 
+
++(NSArray*) executeFetchRequestWithPredicate:(NSPredicate*)predicate inContext:(NSManagedObjectContext*) context error:(NSError **)error
+{
+    NSFetchRequest* fetchRequest = [[self class] fetchRequest];
+    [fetchRequest setPredicate:predicate];
+    return [context executeFetchRequest:fetchRequest error:error];
+}
+
 + (void) insertOrUpdate:(NSArray*)dictArray
            forUniqueKey:(NSString*)key
               withBlock:(void (^) (NSDictionary* dictionary, id managedObject))block

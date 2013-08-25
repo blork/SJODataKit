@@ -68,6 +68,16 @@ Additions to NSManagedObject to reduce boilerplate and simplify common operation
 
 
 /**
+ Returns the result of executing a fetch request the given predicate over the given context.
+ @discussion This method provides a convenient way to retrieve results without the intermediate steps.
+ @param predicate The `NSPredicate` to set on the fetch request.
+ @param context The `NSManagedObjectContext` to execute the fetch request.
+ @param error If there is a problem executing the fetch, upon return contains an instance of NSError that describes the problem.
+ @return An array of objects that meet the criteria specified by request fetched from the receiver and from the persistent stores associated with the receiver’s persistent store coordinator. If an error occurs, returns nil. If no objects match the criteria specified by request, returns an empty array.
+ */
++(NSArray*) executeFetchRequestWithPredicate:(NSPredicate*)predicate inContext:(NSManagedObjectContext*) context error:(NSError **)error;
+
+/**
  Perform a batch insert-or-update.
  @discussion This method codifies the pattern found in the Apple guide to [Implementing Find-or-Create Efficiently](https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/CoreData/Articles/cdImporting.html#//apple_ref/doc/uid/TP40003174-SW4).
  
