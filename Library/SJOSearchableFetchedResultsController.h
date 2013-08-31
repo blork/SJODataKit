@@ -27,6 +27,8 @@ This class provides a simpler way to replicate the often-used pattern of a searc
  */
 @property (strong, nonatomic, readonly) UISearchDisplayController *searchController;
 
+@property (strong, nonatomic) UIView *emptyView;
+
 /**
  Returns the currently active `UITableView` (i.e. regular or search).
  @return The `UITableView` that is currently active.

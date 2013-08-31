@@ -35,6 +35,12 @@
     self.tableView.tableHeaderView = searchBar;
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self showEmptyView:([[[self activeFetchedResultsController] fetchedObjects] count] == 0)];
+}
+
 - (void)didReceiveMemoryWarning
 {
     _searchController.delegate = nil;
@@ -140,6 +146,8 @@
       newIndexPath:(NSIndexPath *)newIndexPath
 {
     UITableView *tableView = controller == self.fetchedResultsController ? self.tableView : self.searchController.searchResultsTableView;
+    
+    [self showEmptyView:([[[self fetchedResultsControllerForTableView:tableView] fetchedObjects] count] == 0)];
     
     switch(type)
     {
@@ -309,6 +317,19 @@
     
     // Return YES to cause the search result table view to be reloaded.
     return YES;
+}
+
+
+- (void) showEmptyView:(BOOL)show
+{
+    if (_emptyView) {
+        if (show) {
+            _emptyView.center = self.view.center;
+            [self.view addSubview:_emptyView];
+        } else {
+            [self.emptyView removeFromSuperview];
+        }
+    }
 }
 
 
