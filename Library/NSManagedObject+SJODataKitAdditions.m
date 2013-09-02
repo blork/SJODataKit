@@ -122,4 +122,21 @@
     [self.managedObjectContext deleteObject:self];
 }
 
+
++(void)deleteAllInStore:(SJODataStore*) store error:(NSError*)error
+{
+    __block NSError *localError = nil;
+    NSManagedObjectContext* deletionContext = [store privateContext];
+    [deletionContext performBlockAndWait:^{
+        NSFetchRequest *fetch = [[self class] fetchRequest];
+        [fetch setIncludesPropertyValues:NO];
+        NSArray *result = [deletionContext executeFetchRequest:fetch error:nil];
+        for (NSManagedObject* object in result) {
+            [deletionContext deleteObject:object];
+        }
+        [deletionContext save:&localError];
+    }];
+    error = localError;
+}
+
 @end
