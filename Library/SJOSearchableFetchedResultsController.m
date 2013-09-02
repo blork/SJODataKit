@@ -38,11 +38,14 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [[self activeTableView] reloadData];
     [self showEmptyView:([[[self activeFetchedResultsController] fetchedObjects] count] == 0)];
 }
 
 - (void)didReceiveMemoryWarning
 {
+    _fetchedResultsController.delegate = nil;
+    _searchFetchedResultsController.delegate = nil;
     _searchController.delegate = nil;
     _searchController.searchResultsDelegate = nil;
     _searchController.searchResultsDataSource = nil;
@@ -52,6 +55,8 @@
 
 -(void)dealloc
 {
+    _fetchedResultsController.delegate = nil;
+    _searchFetchedResultsController.delegate = nil;
     _searchController.delegate = nil;
     _searchController.searchResultsDelegate = nil;
     _searchController.searchResultsDataSource = nil;
@@ -175,7 +180,6 @@
 {
     UITableView *tableView = controller == self.fetchedResultsController ? self.tableView : self.searchController.searchResultsTableView;
     [tableView endUpdates];
-    [tableView reloadData];
 }
 
 #pragma mark -
