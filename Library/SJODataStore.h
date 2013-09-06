@@ -14,6 +14,9 @@
  */
 @interface SJODataStore : NSObject
 
+
+- (id)initWithInitialisationBlock:(void (^) (BOOL success))block;
+
 /**
  Save the contents of the store.
  @discussion Most often called within `applicationWillTerminate:` to persist changes to disk when the user leaves the app.

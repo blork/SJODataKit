@@ -19,20 +19,7 @@
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     
-    ExampleViewController* vc = [[ExampleViewController alloc] init];
-    vc.store = self.store;
-    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:vc];
-    [self.window makeKeyAndVisible];
-    
-    
-    NSManagedObjectContext* context = [self.store privateContext];
-    
-    [context performBlock:^{
-        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-        [fetchRequest setEntity:[Post entityWithContext:context]];
-        NSInteger count = [context countForFetchRequest:fetchRequest error:nil];
-        NSLog(@"Total posts = %@", @(count));
-    }];
+    [self store];
     
     return YES;
 }
@@ -51,10 +38,33 @@
 
 -(SJODataStore *)store
 {
+    AppDelegate *weakSelf = self;
     if (!_store) {
-        _store = [[SJODataStore alloc] init];
+        _store = [[SJODataStore alloc] initWithInitialisationBlock:^(BOOL success) {
+            [weakSelf setup];
+        }];
     }
     return _store;
+}
+
+
+-(void) setup
+{
+    ExampleViewController* vc = [[ExampleViewController alloc] init];
+    vc.store = self.store;
+    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:vc];
+    [self.window makeKeyAndVisible];
+    
+    
+    NSManagedObjectContext* context = [self.store privateContext];
+    
+    [context performBlock:^{
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+        [fetchRequest setEntity:[Post entityWithContext:context]];
+        NSInteger count = [context countForFetchRequest:fetchRequest error:nil];
+        NSLog(@"Total posts = %@", @(count));
+    }];
+
 }
 
 @end
