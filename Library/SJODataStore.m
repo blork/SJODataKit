@@ -20,12 +20,14 @@
 {
     self = [super init];
     if (self) {
+        
+        SJODataStore* weakSelf = self;
         [[NSNotificationCenter defaultCenter] addObserverForName:NSManagedObjectContextDidSaveNotification
                                                           object:nil
                                                            queue:[NSOperationQueue mainQueue]
                                                       usingBlock:^(NSNotification* note)
          {
-             [self.mainContext mergeChangesFromContextDidSaveNotification:note];
+             [weakSelf.mainContext mergeChangesFromContextDidSaveNotification:note];
          }];
     }
     return self;
