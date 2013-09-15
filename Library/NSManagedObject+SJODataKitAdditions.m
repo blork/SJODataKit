@@ -72,7 +72,7 @@
                 inStore:(SJODataStore *) store
                   error:(NSError*)error
 {
-    NSManagedObjectContext* context = [store privateContext];
+    NSManagedObjectContext* context = [store newPrivateContext];
     __block NSError *localError = nil;
     
     [context performBlockAndWait:^{
@@ -126,7 +126,7 @@
 +(void)deleteAllInStore:(SJODataStore*) store error:(NSError*)error
 {
     __block NSError *localError = nil;
-    NSManagedObjectContext* deletionContext = [store privateContext];
+    NSManagedObjectContext* deletionContext = [store newPrivateContext];
     [deletionContext performBlockAndWait:^{
         NSFetchRequest *fetch = [[self class] fetchRequest];
         [fetch setIncludesPropertyValues:NO];

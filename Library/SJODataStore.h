@@ -36,7 +36,7 @@
  
  @return A new context initialised with the `NSPrivateQueueConcurrencyType` type.
  */
-- (NSManagedObjectContext*) privateContext;
+- (NSManagedObjectContext*) newPrivateContext;
 
 /**
  The primary `NSManagedObjectContext` on the main thread.

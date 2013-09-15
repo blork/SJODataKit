@@ -27,6 +27,12 @@
                                                            queue:[NSOperationQueue mainQueue]
                                                       usingBlock:^(NSNotification* note)
          {
+             NSManagedObjectContext *managedObjectContext = [note object];
+             
+             for(NSManagedObject *object in [[note userInfo] objectForKey:NSUpdatedObjectsKey]) {
+                 [[managedObjectContext objectWithID:[object objectID]] willAccessValueForKey:nil];
+             }
+
              [weakSelf.mainContext mergeChangesFromContextDidSaveNotification:note];
          }];
     }
@@ -47,7 +53,7 @@
     }
 }
 
-- (NSManagedObjectContext*)privateContext
+- (NSManagedObjectContext*)newPrivateContext
 {
     NSManagedObjectContext* context = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
     context.persistentStoreCoordinator = [self persistentStoreCoordinator];
