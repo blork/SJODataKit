@@ -111,11 +111,13 @@ Additions to NSManagedObject to reduce boilerplate and simplify common operation
 - (void)delete;
 
 /**
- Remove all objects of the class from the store syncronously.
+ Remove all objects of the class from the store asyncronously.
  
  @param store The `SJODataStore` in which to perform the deletions.
- @param error An error pointer
+ @param block called on success or failure.
  */
-+(void)deleteAllInStore:(SJODataStore*) store error:(NSError*)error;
++ (void)deleteAllInStore:(SJODataStore*) store withBlock:(void (^) (BOOL success, NSError *error))block;
+
+ */
 
 @end

@@ -123,20 +123,36 @@
 }
 
 
-+(void)deleteAllInStore:(SJODataStore*) store error:(NSError*)error
++(void)deleteAllInStore:(SJODataStore*) store withBlock:(void (^) (BOOL success, NSError *error))block
 {
-    __block NSError *localError = nil;
-    NSManagedObjectContext* deletionContext = [store newPrivateContext];
-    [deletionContext performBlockAndWait:^{
-        NSFetchRequest *fetch = [[self class] fetchRequest];
-        [fetch setIncludesPropertyValues:NO];
-        NSArray *result = [deletionContext executeFetchRequest:fetch error:nil];
-        for (NSManagedObject* object in result) {
-            [deletionContext deleteObject:object];
-        }
-        [deletionContext save:&localError];
-    }];
-    error = localError;
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSManagedObjectContext* context = [store newPrivateContext];
+        [context performBlock:^{
+            NSFetchRequest* fetchRequest = [[self class] fetchRequest];
+            NSArray* all = [context executeFetchRequest:fetchRequest error:nil];
+            for (NSManagedObject* object in all) {
+                [context deleteObject:object];
+            }
+            NSError *error = nil;
+            [context save:&error];
+            if (block) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    if (error) {
+                        block(NO, error);
+                    } else {
+                        block(YES, nil);
+                    }
+                });
+            }
+        }];
+    });
+}
+
+
++ (NSPropertyDescription*) propertyDescriptionForName:(NSString*) name inContext:(NSManagedObjectContext *) context
+{
+    return [[[[self class] entityWithContext:context] propertiesByName] objectForKey:name];
 }
 
 @end
