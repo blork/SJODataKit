@@ -119,6 +119,23 @@
     NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
                              [NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption,
                              [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption, nil];
+    
+    
+    // Check if we already have a persistent store
+    if ( [[NSFileManager defaultManager] fileExistsAtPath: [storeURL path]] ) {
+        NSDictionary *existingPersistentStoreMetadata = [NSPersistentStoreCoordinator metadataForPersistentStoreOfType: NSSQLiteStoreType URL:storeURL error:&error];
+        if (!existingPersistentStoreMetadata) {
+            // Something *really* bad has happened to the persistent store
+            [NSException raise: NSInternalInconsistencyException format: @"Failed to read metadata for persistent store %@: %@", storeURL, error];
+        }
+        if (![[self managedObjectModel] isConfiguration:nil compatibleWithStoreMetadata:existingPersistentStoreMetadata]) {
+            if (![[NSFileManager defaultManager] removeItemAtURL:storeURL error:&error]) {
+                NSLog(@"*** Could not delete persistent store, %@", error);
+            }
+        }
+    }
+
+    
 
     if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:options error:&error]) {
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
