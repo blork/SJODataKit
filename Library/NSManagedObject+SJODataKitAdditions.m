@@ -117,7 +117,7 @@
     }];
 }
 
--(void)delete
+-(void)deleteObject
 {
     [self.managedObjectContext deleteObject:self];
 }

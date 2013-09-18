@@ -108,7 +108,7 @@ Additions to NSManagedObject to reduce boilerplate and simplify common operation
 /**
  Delete the `NSManagedObject` from its current context.
  */
-- (void)delete;
+- (void)deleteObject;
 
 /**
  Remove all objects of the class from the store asyncronously.
