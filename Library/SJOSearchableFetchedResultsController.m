@@ -30,8 +30,6 @@
     self.searchController.delegate = self;
     self.searchController.searchBar.frame = CGRectMake(0, 0, 0, 44);
     self.searchController.searchBar.delegate = self;
-    
-    self.tableView.contentOffset = CGPointMake(0, 44);
     self.tableView.tableHeaderView = searchBar;
 }
 
