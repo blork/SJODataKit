@@ -118,6 +118,12 @@ Additions to NSManagedObject to reduce boilerplate and simplify common operation
  */
 + (void)deleteAllInStore:(SJODataStore*) store withBlock:(void (^) (BOOL success, NSError *error))block;
 
+/**
+ Convenience method for retrieving an NSPropertyDescription.
+ 
+ @param store The name of the property.
+ @param context The `NSManagedObjectContext` to use.
  */
++ (NSPropertyDescription*) propertyDescriptionForName:(NSString*) name inContext:(NSManagedObjectContext *) context;
 
 @end
