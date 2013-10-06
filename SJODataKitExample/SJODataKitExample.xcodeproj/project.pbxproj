@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		13DECFB5180214AF003DC4E6 /* Author.m in Sources */ = {isa = PBXBuildFile; fileRef = 13DECFB4180214AF003DC4E6 /* Author.m */; };
+		13DECFB8180214AF003DC4E6 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 13DECFB7180214AF003DC4E6 /* Post.m */; };
 		2218286017943523006139B0 /* NSManagedObject+SJODataKitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2218285A17943523006139B0 /* NSManagedObject+SJODataKitAdditions.m */; };
 		2218286117943523006139B0 /* SJODataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 2218285D17943523006139B0 /* SJODataStore.m */; };
 		2218286217943523006139B0 /* SJOSearchableFetchedResultsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2218285F17943523006139B0 /* SJOSearchableFetchedResultsController.m */; };
@@ -22,10 +24,13 @@
 		22D1B02B179049B40037FA82 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22D1B02A179049B40037FA82 /* Default@2x.png */; };
 		22D1B02D179049B40037FA82 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22D1B02C179049B40037FA82 /* Default-568h@2x.png */; };
 		22D1B030179049B40037FA82 /* SJODataKitExample.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 22D1B02E179049B40037FA82 /* SJODataKitExample.xcdatamodeld */; };
-		22D1B042179051790037FA82 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 22D1B041179051790037FA82 /* Post.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		13DECFB3180214AF003DC4E6 /* Author.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Author.h; sourceTree = "<group>"; };
+		13DECFB4180214AF003DC4E6 /* Author.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Author.m; sourceTree = "<group>"; };
+		13DECFB6180214AF003DC4E6 /* Post.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
+		13DECFB7180214AF003DC4E6 /* Post.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
 		2218285917943523006139B0 /* NSManagedObject+SJODataKitAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+SJODataKitAdditions.h"; sourceTree = "<group>"; };
 		2218285A17943523006139B0 /* NSManagedObject+SJODataKitAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+SJODataKitAdditions.m"; sourceTree = "<group>"; };
 		2218285B17943523006139B0 /* SJODataKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SJODataKit.h; sourceTree = "<group>"; };
@@ -50,8 +55,6 @@
 		22D1B02A179049B40037FA82 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		22D1B02C179049B40037FA82 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		22D1B02F179049B40037FA82 /* SJODataKitExample.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SJODataKitExample.xcdatamodel; sourceTree = "<group>"; };
-		22D1B040179051790037FA82 /* Post.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
-		22D1B041179051790037FA82 /* Post.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,9 +124,11 @@
 				22D1B02E179049B40037FA82 /* SJODataKitExample.xcdatamodeld */,
 				22182863179441DF006139B0 /* ExampleViewController.h */,
 				22182864179441DF006139B0 /* ExampleViewController.m */,
-				22D1B040179051790037FA82 /* Post.h */,
-				22D1B041179051790037FA82 /* Post.m */,
 				22D1B01D179049B40037FA82 /* Supporting Files */,
+				13DECFB6180214AF003DC4E6 /* Post.h */,
+				13DECFB7180214AF003DC4E6 /* Post.m */,
+				13DECFB3180214AF003DC4E6 /* Author.h */,
+				13DECFB4180214AF003DC4E6 /* Author.m */,
 			);
 			path = SJODataKitExample;
 			sourceTree = "<group>";
@@ -210,10 +215,11 @@
 				22D1B023179049B40037FA82 /* main.m in Sources */,
 				22D1B027179049B40037FA82 /* AppDelegate.m in Sources */,
 				22D1B030179049B40037FA82 /* SJODataKitExample.xcdatamodeld in Sources */,
-				22D1B042179051790037FA82 /* Post.m in Sources */,
 				2218286117943523006139B0 /* SJODataStore.m in Sources */,
+				13DECFB8180214AF003DC4E6 /* Post.m in Sources */,
 				22182865179441DF006139B0 /* ExampleViewController.m in Sources */,
 				2218286017943523006139B0 /* NSManagedObject+SJODataKitAdditions.m in Sources */,
+				13DECFB5180214AF003DC4E6 /* Author.m in Sources */,
 				2218286217943523006139B0 /* SJOSearchableFetchedResultsController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -8,6 +8,7 @@
 
 #import "ExampleViewController.h"
 #import "Post.h"
+#import "Author.h"
 #import "SJODataKit.h"
 
 @interface ExampleViewController ()
@@ -59,23 +60,33 @@
 -(void) insertUpdateExample
 {
     NSArray* data = @[
-                      @{@"title": @"All the Mashed Potatoes"},
-                      @{@"title": @"Google Versus"},
-                      @{@"title": @"Facebook Home and Dogfooding"},
-                      @{@"title": @"Web Apps vs. Native Apps Is Still a Thing"},
-                      @{@"title": @"If Not for Android, Where Would the iPhone Be?"},
-                      @{@"title": @"Pricing and Profit Consistency and the Halo Effect"},
-                      @{@"title": @"Everything Else"},
-                      @{@"title": @"Ceding the Crown"},
-                      @{@"title": @"Open and Shut"}
+                      @{@"title": @"All the Mashed Potatoes", @"author" : @{@"name": @"Sam Oakley"}},
+                      @{@"title": @"Google Versus", @"author" : @{@"name": @"Sam Oakley"}},
+                      @{@"title": @"Facebook Home and Dogfooding", @"author" : @{@"name": @"Sam Oakley"}},
+                      @{@"title": @"Web Apps vs. Native Apps Is Still a Thing", @"author" : @{@"name": @"Zack Brown"}},
+                      @{@"title": @"If Not for Android, Where Would the iPhone Be?", @"author" : @{@"name": @"Sam Oakley"}},
+                      @{@"title": @"Pricing and Profit Consistency and the Halo Effect", @"author" : @{@"name": @"Zack Brown"}},
+                      @{@"title": @"Everything Else", @"author" : @{@"name": @"Zack Brown"}},
+                      @{@"title": @"Ceding the Crown", @"author" : @{@"name": @"Sam Oakley"}},
+                      @{@"title": @"Open and Shut", @"author" : @{@"name": @"Zack Brown"}}
                       ];
-    [Post insertOrUpdate:data
-            forUniqueKey:@"title"
-               withBlock:^(NSDictionary *dictionary, Post* managedObject) {
-                   managedObject.title = dictionary[@"title"];
-               }
-                 inStore:self.store
-                   error:nil];
+	
+	NSManagedObjectContext *context = [self.store privateContext];
+	
+    [Post insertOrUpdate:data forUniqueKey:@"title" withBlock:^(NSDictionary *dictionary, Post *post)
+	{
+		post.title = dictionary[@"title"];
+		
+		[Author insertOrUpdate:[NSArray arrayWithObject:[dictionary objectForKey:@"author"]] forUniqueKey:@"name" withBlock:^(NSDictionary *dictionary, Author *author)
+		{
+			author.name = dictionary[@"name"];
+			
+			[post setAuthor:author];
+			
+		} inContext:context error:nil];
+		
+		
+	} inContext:context error:nil];
 }
 
 
@@ -141,7 +152,8 @@
 -(void)fetchedResultsController:(NSFetchedResultsController *)fetchedResultsController configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
     Post *post = [fetchedResultsController objectAtIndexPath:indexPath];
-    cell.textLabel.text = post.title;
+	
+    cell.textLabel.text = [NSString stringWithFormat:@"%@ by %@", post.title, post.author.name];
 }
 
 @end
