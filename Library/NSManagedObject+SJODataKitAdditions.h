@@ -83,7 +83,7 @@ Additions to NSManagedObject to reduce boilerplate and simplify common operation
 + (void) insertOrUpdate:(NSArray*)dictArray
            forUniqueKey:(NSString*)key
               withBlock:(void (^) (NSDictionary* dictionary, id managedObject))block
-                inStore:(SJODataStore *) store
+                inContext:(NSManagedObjectContext *)context
                   error:(NSError*)error;
 
 /**
