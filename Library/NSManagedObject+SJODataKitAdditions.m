@@ -54,10 +54,9 @@
 + (void) insertOrUpdate:(NSArray*)dictArray
            forUniqueKey:(NSString*)key
               withBlock:(void (^) (NSDictionary* dictionary, id managedObject))block
-                inStore:(SJODataStore *) store
+                inContext:(NSManagedObjectContext *)context
                   error:(NSError*)error
 {
-    NSManagedObjectContext* context = [store privateContext];
     __block NSError *localError = nil;
     
     [context performBlockAndWait:^{
