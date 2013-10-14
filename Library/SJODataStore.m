@@ -20,12 +20,20 @@
 {
     self = [super init];
     if (self) {
+        
+        SJODataStore* weakSelf = self;
         [[NSNotificationCenter defaultCenter] addObserverForName:NSManagedObjectContextDidSaveNotification
                                                           object:nil
                                                            queue:[NSOperationQueue mainQueue]
                                                       usingBlock:^(NSNotification* note)
          {
-             [self.mainContext mergeChangesFromContextDidSaveNotification:note];
+             NSManagedObjectContext *managedObjectContext = [note object];
+             
+             for(NSManagedObject *object in [[note userInfo] objectForKey:NSUpdatedObjectsKey]) {
+                 [[managedObjectContext objectWithID:[object objectID]] willAccessValueForKey:nil];
+             }
+
+             [weakSelf.mainContext mergeChangesFromContextDidSaveNotification:note];
          }];
     }
     return self;
@@ -45,7 +53,7 @@
     }
 }
 
-- (NSManagedObjectContext*)privateContext
+- (NSManagedObjectContext*)newPrivateContext
 {
     NSManagedObjectContext* context = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
     context.persistentStoreCoordinator = [self persistentStoreCoordinator];
@@ -99,29 +107,35 @@
     }
     
     NSDictionary *applicationInfo = [[NSBundle mainBundle] infoDictionary];
-#if TARGET_OS_IPHONE
     NSString *applicationName = [applicationInfo objectForKey:@"CFBundleDisplayName"];
     NSURL *documentsURL = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
     NSURL *storeURL = [documentsURL URLByAppendingPathComponent:[NSString stringWithFormat:@"%@.sqlite", applicationName]];
-#else
-    NSString *applicationName = [applicationInfo objectForKey:@"CFBundleName"];
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSURL *applicationSupportURL = [[fileManager URLsForDirectory:NSApplicationSupportDirectory inDomains:NSUserDomainMask] lastObject];
-    applicationSupportURL = [applicationSupportURL URLByAppendingPathComponent:applicationName];
-    
-    NSDictionary *properties = [applicationSupportURL resourceValuesForKeys:[NSArray arrayWithObject:NSURLIsDirectoryKey] error:nil];
-    if (!properties) {
-        [fileManager createDirectoryAtPath:[applicationSupportURL path] withIntermediateDirectories:YES attributes:nil error:nil];
-    }
-    
-    NSURL *storeURL = [applicationSupportURL URLByAppendingPathComponent:[NSString stringWithFormat:@"%@.sqlite", applicationName]];
-#endif
 
+    
+    
+    
     NSError *error = nil;
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
     NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
                              [NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption,
                              [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption, nil];
+    
+    
+    // Check if we already have a persistent store
+    if ( [[NSFileManager defaultManager] fileExistsAtPath: [storeURL path]] ) {
+        NSDictionary *existingPersistentStoreMetadata = [NSPersistentStoreCoordinator metadataForPersistentStoreOfType: NSSQLiteStoreType URL:storeURL error:&error];
+        if (!existingPersistentStoreMetadata) {
+            // Something *really* bad has happened to the persistent store
+            [NSException raise: NSInternalInconsistencyException format: @"Failed to read metadata for persistent store %@: %@", storeURL, error];
+        }
+        if (![[self managedObjectModel] isConfiguration:nil compatibleWithStoreMetadata:existingPersistentStoreMetadata]) {
+            if (![[NSFileManager defaultManager] removeItemAtURL:storeURL error:&error]) {
+                NSLog(@"*** Could not delete persistent store, %@", error);
+            }
+        }
+    }
+
+    
 
     if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:options error:&error]) {
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);

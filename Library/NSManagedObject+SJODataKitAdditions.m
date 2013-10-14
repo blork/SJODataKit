@@ -51,6 +51,21 @@
     return [NSFetchRequest fetchRequestWithEntityName:[[self class] entityName]];
 }
 
++(NSFetchRequest*) fetchRequestWithPredicate:(NSPredicate*)predicate
+{
+    NSFetchRequest* fetchRequest = [[self class] fetchRequest];
+    [fetchRequest setPredicate:predicate];
+    return fetchRequest;
+}
+
+
++(NSArray*) executeFetchRequestWithPredicate:(NSPredicate*)predicate inContext:(NSManagedObjectContext*) context error:(NSError **)error
+{
+    NSFetchRequest* fetchRequest = [[self class] fetchRequest];
+    [fetchRequest setPredicate:predicate];
+    return [context executeFetchRequest:fetchRequest error:error];
+}
+
 + (void) insertOrUpdate:(NSArray*)dictArray
            forUniqueKey:(NSString*)key
               withBlock:(void (^) (NSDictionary* dictionary, id managedObject))block
@@ -101,9 +116,42 @@
     }];
 }
 
--(void)delete
+-(void)deleteObject
 {
     [self.managedObjectContext deleteObject:self];
+}
+
+
++(void)deleteAllInStore:(SJODataStore*) store withBlock:(void (^) (BOOL success, NSError *error))block
+{
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSManagedObjectContext* context = [store newPrivateContext];
+        [context performBlock:^{
+            NSFetchRequest* fetchRequest = [[self class] fetchRequest];
+            NSArray* all = [context executeFetchRequest:fetchRequest error:nil];
+            for (NSManagedObject* object in all) {
+                [context deleteObject:object];
+            }
+            NSError *error = nil;
+            [context save:&error];
+            if (block) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    if (error) {
+                        block(NO, error);
+                    } else {
+                        block(YES, nil);
+                    }
+                });
+            }
+        }];
+    });
+}
+
+
++ (NSPropertyDescription*) propertyDescriptionForName:(NSString*) name inContext:(NSManagedObjectContext *) context
+{
+    return [[[[self class] entityWithContext:context] propertiesByName] objectForKey:name];
 }
 
 @end

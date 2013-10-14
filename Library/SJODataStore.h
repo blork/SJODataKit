@@ -16,7 +16,7 @@
 
 /**
  Save the contents of the store.
- @discussion Most often called within `applicationWillTerminate:` to persist changes to disk when the user leaves the app.
+ @discussion Most often called within applicationWillTerminate: to persist changes to disk when the user leaves the app.
  */
 - (void) save;
 
@@ -34,14 +34,14 @@
         });
     });
  
- @return A new context initialised with the `NSPrivateQueueConcurrencyType` type.
+ @return A new context initialised with the NSPrivateQueueConcurrencyType type.
  */
-- (NSManagedObjectContext*) privateContext;
+- (NSManagedObjectContext*) newPrivateContext;
 
 /**
- The primary `NSManagedObjectContext` on the main thread.
+ The primary NSManagedObjectContext on the main thread.
  @discussion In general this should only be used to back FRCs, or for quick operations. Most other operations should happen off the main thread for performance.
- @return The shared `NSManagedObjectContext`.
+ @return The shared NSManagedObjectContext.
  */
 - (NSManagedObjectContext*) mainContext;
 
