@@ -25,7 +25,7 @@
     [self.window makeKeyAndVisible];
     
     
-    NSManagedObjectContext* context = [self.store privateContext];
+    NSManagedObjectContext* context = [self.store newPrivateContext];
     
     [context performBlock:^{
         NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];

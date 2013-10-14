@@ -71,7 +71,7 @@
                       @{@"title": @"Open and Shut", @"author" : @{@"name": @"Zack Brown"}}
                       ];
 	
-	NSManagedObjectContext *context = [self.store privateContext];
+	NSManagedObjectContext *context = [self.store newPrivateContext];
 	
     [Post insertOrUpdate:data forUniqueKey:@"title" withBlock:^(NSDictionary *dictionary, Post *post)
 	{
@@ -94,7 +94,7 @@
 {
     __weak SJODataStore* store = self.store;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSManagedObjectContext* context = [store privateContext];
+        NSManagedObjectContext* context = [store newPrivateContext];
         [context performBlock:^{
             NSFetchRequest* fetchRequest = [Post fetchRequest];
             NSArray* allPosts = [context executeFetchRequest:fetchRequest error:nil];
