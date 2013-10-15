@@ -260,7 +260,7 @@
 
 -(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
 {
-    [self.tableView setContentOffset:CGPointMake(0, 44) animated:YES];
+
 }
 
 -(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
