@@ -47,6 +47,7 @@
     _searchController.delegate = nil;
     _searchController.searchResultsDelegate = nil;
     _searchController.searchResultsDataSource = nil;
+    _searchController.searchBar.delegate = nil;
     _searchController = nil;
     [super didReceiveMemoryWarning];
 }
@@ -58,6 +59,7 @@
     _searchController.delegate = nil;
     _searchController.searchResultsDelegate = nil;
     _searchController.searchResultsDataSource = nil;
+    _searchController.searchBar.delegate = nil;
     _searchController = nil;
 }
 
@@ -260,7 +262,7 @@
 
 -(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
 {
-    [self.tableView setContentOffset:CGPointMake(0, 44) animated:YES];
+
 }
 
 -(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
