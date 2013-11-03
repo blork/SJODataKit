@@ -103,7 +103,7 @@ Additions to NSManagedObject to reduce boilerplate and simplify common operation
            forUniqueKey:(NSString*)key
               withBlock:(void (^) (NSDictionary* dictionary, id managedObject))block
                 inContext:(NSManagedObjectContext *)context
-                  error:(NSError*)error;
+                  error:(NSError**)error;
 
 /**
  Delete the NSManagedObject from its current context.
