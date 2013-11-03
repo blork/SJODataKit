@@ -66,11 +66,11 @@
     return [context executeFetchRequest:fetchRequest error:error];
 }
 
-+ (void) insertOrUpdate:(NSArray*)dictArray
++ (BOOL) insertOrUpdate:(NSArray*)dictArray
            forUniqueKey:(NSString*)key
               withBlock:(void (^) (NSDictionary* dictionary, id managedObject))block
                 inStore:(SJODataStore *) store
-                  error:(NSError*)error
+                  error:(NSError **)error
 {
     NSManagedObjectContext* context = [store newPrivateContext];
     __block NSError *localError = nil;
@@ -90,6 +90,7 @@
         
         NSArray *objectsMatchingKey = [context executeFetchRequest:fetchRequest error:&localError];
         if (localError) {
+            *error = localError;
             return;
         }
         
@@ -113,8 +114,14 @@
             }
             
         }
-        [context save:nil];
+        [context save:&localError];
+        if (localError) {
+            *error = localError;
+            return;
+        }
     }];
+    
+    return !localError;
 }
 
 -(void)deleteObject

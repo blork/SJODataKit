@@ -99,11 +99,11 @@ Additions to NSManagedObject to reduce boilerplate and simplify common operation
  @param store The SJODataStore in which to perform the inserts/updates.
  @param error An error pointer
  */
-+ (void) insertOrUpdate:(NSArray*)dictArray
++ (BOOL) insertOrUpdate:(NSArray*)dictArray
            forUniqueKey:(NSString*)key
               withBlock:(void (^) (NSDictionary* dictionary, id managedObject))block
                 inStore:(SJODataStore *) store
-                  error:(NSError*)error;
+                  error:(NSError **)error;
 
 /**
  Delete the NSManagedObject from its current context.
