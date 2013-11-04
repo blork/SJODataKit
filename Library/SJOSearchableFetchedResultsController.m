@@ -54,7 +54,6 @@
 
 -(void)dealloc
 {
-    self.tableView.delegate = nil;
     _fetchedResultsController.delegate = nil;
     _searchFetchedResultsController.delegate = nil;
     _searchController.delegate = nil;
