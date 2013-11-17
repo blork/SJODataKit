@@ -26,14 +26,19 @@
                                          inManagedObjectContext:context];
 }
 
-+ (instancetype)findByKey:(NSString *)key value:(id)value inContext:(NSManagedObjectContext *)context
++ (instancetype)findWithPredicate:(NSPredicate*)predicate inContext:(NSManagedObjectContext *)context
 {
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K = %@", key, value];
     NSFetchRequest *request = [[self class] fetchRequest];
     [request setFetchLimit:1];
     [request setPredicate:predicate];
     NSArray *matching = [context executeFetchRequest:request error:nil];
     return [matching lastObject];
+}
+
++ (instancetype)findByKey:(NSString *)key value:(id)value inContext:(NSManagedObjectContext *)context
+{
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K = %@", key, value];
+    return [[self class] findWithPredicate:predicate inContext:context];
 }
 
 + (instancetype)findOrInsertByKey:(NSString *)key value:(id)value inContext:(NSManagedObjectContext *)context

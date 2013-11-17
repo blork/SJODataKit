@@ -33,6 +33,8 @@ Additions to NSManagedObject to reduce boilerplate and simplify common operation
  */
 + (instancetype) insertInContext:(NSManagedObjectContext*) context;
 
++ (instancetype) findWithPredicate:(NSPredicate*)predicate inContext:(NSManagedObjectContext *)context;
+
 /**
  Find an instance of NSManagedObject subclass in the NSManagedObjectContext matching the key and value.
  @param key The name of the object property to match on.
