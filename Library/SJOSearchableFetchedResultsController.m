@@ -73,7 +73,7 @@
 
 - (NSFetchedResultsController *)activeFetchedResultsController
 {
-    return self.searchController.active ? self.searchFetchedResultsController : self.fetchedResultsController;
+    return (self.searchController && self.searchController.active) ? self.searchFetchedResultsController : self.fetchedResultsController;
 }
 
 - (NSFetchedResultsController *)fetchedResultsControllerForTableView:(UITableView *)tableView
