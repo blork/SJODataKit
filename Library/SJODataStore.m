@@ -126,7 +126,9 @@
         NSDictionary *existingPersistentStoreMetadata = [NSPersistentStoreCoordinator metadataForPersistentStoreOfType: NSSQLiteStoreType URL:storeURL error:&error];
         if (!existingPersistentStoreMetadata) {
             // Something *really* bad has happened to the persistent store
-            [NSException raise: NSInternalInconsistencyException format: @"Failed to read metadata for persistent store %@: %@", storeURL, error];
+            if (![[NSFileManager defaultManager] removeItemAtURL:storeURL error:&error]) {
+                NSLog(@"*** Could not delete persistent store, %@", error);
+            }
         }
         if (![[self managedObjectModel] isConfiguration:nil compatibleWithStoreMetadata:existingPersistentStoreMetadata]) {
             if (![[NSFileManager defaultManager] removeItemAtURL:storeURL error:&error]) {
