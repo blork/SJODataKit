@@ -27,7 +27,7 @@ This class provides a simpler way to replicate the often-used pattern of a searc
 
 /**
  The SJODataStore to be used when querying data.
- @warning This must be set before the view is loaded unless a constructed with an managed object context.
+ @warning This must be set before the view is loaded unless constructed with an managed object context.
  */
 @property (strong, nonatomic) SJODataStore *store;
 
