@@ -37,6 +37,11 @@ This class provides a simpler way to replicate the often-used pattern of a searc
 @property (nonatomic, strong, readonly) NSManagedObjectContext *managedObjectContext;
 
 /**
+ *  Returns YES if the user is actively searching, i.e. the search bar has begun editting. Returns NO after the user has cancelled the search.
+ */
+@property(nonatomic, assign, readonly) BOOL searchIsActive;
+
+/**
  The UISearchDisplayController used to manage the search interface.
  @discussion You can customise it in your subclass to enable scope buttons, etc.
  */

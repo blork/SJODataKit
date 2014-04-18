@@ -15,6 +15,7 @@
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) NSFetchedResultsController *searchFetchedResultsController;
 @property (nonatomic, strong, readwrite) NSManagedObjectContext *managedObjectContext;
+@property(nonatomic, assign, readwrite) BOOL searchIsActive;
 @end
 
 @implementation SJOSearchableFetchedResultsController
@@ -258,6 +259,7 @@
 
 - (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
 {
+	self.searchIsActive = YES;
 	[searchBar sizeToFit];
 	[searchBar setShowsCancelButton:YES animated:YES];
 	return YES;
@@ -272,6 +274,7 @@
 
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
+	self.searchIsActive = NO;
     [self searchBarShouldEndEditing:searchBar];
 }
 
