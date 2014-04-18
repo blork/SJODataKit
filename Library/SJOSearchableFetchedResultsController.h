@@ -37,7 +37,7 @@ This class provides a simpler way to replicate the often-used pattern of a searc
 @property (nonatomic, strong, readonly) NSManagedObjectContext *managedObjectContext;
 
 /**
- *  Returns YES if the user is actively searching, i.e. the search bar has begun editting. Returns NO after the user has cancelled the search.
+ *  Returns YES if the user is actively searching, i.e. the search bar has begun editing. Returns NO after the user has cancelled the search.
  */
 @property(nonatomic, assign, readonly) BOOL searchIsActive;
 
@@ -96,5 +96,18 @@ Forces the fetched results controllers to be recreated, causing performFetch to 
  @param fetchedResultsController The NSFetchedResultsController to be reloaded
  */
 - (void) reloadFetchedResultsControllers;
+
+/**---------------------------------------------------------------------------------------
+ * @name Methods that can overridden in subclass, but defaults are used otherwise.
+ *  ---------------------------------------------------------------------------------------
+ */
+/**
+ *  Returns the section key path string to use when constructing new NSFetchedResultsControllers. nil by default, so without overriding NSFetchedResultsControllers will have no sections. NOTE: if `searchIsActive` is YES then the return value will be ignored and nil used regardless. This is because A a section index should not be shown while searching, and B executed fetch requests take longer when sections are used. When searching this is especially noticable as a new fetch request is executed upon each key stroke during search.
+ *
+ *  @param controller The SJOSearchableFetchedResultsController creating the NSFetchedResultsController for which a sectionKeyPath is needed.
+ *
+ *  @return The sectionKeyPath to use in constructing a NSFetchedResultsController, or nil for no sections.
+ */
+- (NSString *)sectionKeyPathForSearchableFetchedResultsController:(SJOSearchableFetchedResultsController *)controller;
 
 @end
