@@ -16,10 +16,25 @@ This class provides a simpler way to replicate the often-used pattern of a searc
 @interface SJOSearchableFetchedResultsController : UITableViewController<UISearchBarDelegate, UISearchDisplayDelegate, NSFetchedResultsControllerDelegate>
 
 /**
+ *  Initialises a Core Data-backed UITableViewController with a configured with a UISearchDispalyController.
+ *
+ *  @param context The managed object context to use when query Core Data.
+ *  @param style   A constant that specifies the style of table view that the controller object is to manage (UITableViewStylePlain or UITableViewStyleGrouped).
+ *
+ *  @return An initialized SJOSearchableFetchedResultsController object or nil if the object couldn’t be created.
+ */
+- (instancetype)initWithContext:(NSManagedObjectContext *)managedObjectContext style:(UITableViewStyle)style;
+
+/**
  The SJODataStore to be used when querying data.
- @warning This must be set before the view is loaded.
+ @warning This must be set before the view is loaded unless a constructed with an managed object context.
  */
 @property (strong, nonatomic) SJODataStore *store;
+
+/**
+ *  The managed object context used. If the store property is set this is the `mainContext` of the SJOStore instance.
+ */
+@property (nonatomic, strong, readonly) NSManagedObjectContext *managedObjectContext;
 
 /**
  The UISearchDisplayController used to manage the search interface.

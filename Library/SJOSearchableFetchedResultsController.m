@@ -14,10 +14,20 @@
 @interface SJOSearchableFetchedResultsController ()
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) NSFetchedResultsController *searchFetchedResultsController;
+@property (nonatomic, strong, readwrite) NSManagedObjectContext *managedObjectContext;
 @end
 
 @implementation SJOSearchableFetchedResultsController
 
+// To override the setter the property must be synthesized
+@synthesize store = _store;
+
+- (instancetype)initWithContext:(NSManagedObjectContext *)managedObjectContext style:(UITableViewStyle)style {
+	if ([super initWithStyle:style]) {
+        self.managedObjectContext = managedObjectContext;
+    }
+    return self;
+}
 
 - (void)viewDidLoad
 {
@@ -200,10 +210,15 @@
     }
 }
 
+- (void)setStore:(SJODataStore *)store {
+	_store = store;
+	self.managedObjectContext = store.mainContext;
+}
+
 - (NSFetchedResultsController *)newFetchedResultsControllerWithSearch:(NSString *)searchString
 {
     NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:[self fetchRequestForSearch:searchString]
-                                                                                               managedObjectContext:self.store.mainContext
+                                                                                               managedObjectContext:self.managedObjectContext
                                                                                                  sectionNameKeyPath:nil
                                                                                                           cacheName:nil];
     fetchedResultsController.delegate = self;
