@@ -14,6 +14,8 @@
  */
 @interface SJODataStore : NSObject
 
+@property (nonatomic, strong) NSURL* storeURL;
+
 /**
  Save the contents of the store.
  @discussion Most often called within applicationWillTerminate: to persist changes to disk when the user leaves the app.

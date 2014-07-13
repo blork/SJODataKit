@@ -83,7 +83,7 @@
     if (_managedObjectModel != nil) {
         return _managedObjectModel;
     }
-
+    
     // Default model
     NSManagedObjectModel *model = [NSManagedObjectModel mergedModelFromBundles:nil];
     
@@ -108,11 +108,14 @@
     
     NSDictionary *applicationInfo = [[NSBundle mainBundle] infoDictionary];
     NSString *applicationName = [applicationInfo objectForKey:@"CFBundleDisplayName"];
-    NSURL *documentsURL = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
-    NSURL *storeURL = [documentsURL URLByAppendingPathComponent:[NSString stringWithFormat:@"%@.sqlite", applicationName]];
-
     
-    
+    NSURL *storeURL;
+    if (self.storeURL) {
+        storeURL = self.storeURL;
+    } else {
+        NSURL *directory = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+        storeURL = [directory URLByAppendingPathComponent:[NSString stringWithFormat:@"%@.sqlite", applicationName]];
+    }
     
     NSError *error = nil;
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
