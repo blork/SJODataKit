@@ -13,7 +13,6 @@ Pod::Spec.new do |s|
   s.platform     = :ios, '5.0'
 
   s.source_files = 'Library/*.{h,m}'
-  s.public_header_files = 'Library/SJODataKit.h'
   
   s.framework = 'CoreData'
 
