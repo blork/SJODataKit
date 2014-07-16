@@ -14,10 +14,21 @@
 @interface SJOSearchableFetchedResultsController ()
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) NSFetchedResultsController *searchFetchedResultsController;
+@property (nonatomic, strong, readwrite) NSManagedObjectContext *managedObjectContext;
+@property(nonatomic, assign, readwrite) BOOL searchIsActive;
 @end
 
 @implementation SJOSearchableFetchedResultsController
 
+// To override the setter the property must be synthesized
+@synthesize store = _store;
+
+- (instancetype)initWithContext:(NSManagedObjectContext *)managedObjectContext style:(UITableViewStyle)style {
+	if ([super initWithStyle:style]) {
+        self.managedObjectContext = managedObjectContext;
+    }
+    return self;
+}
 
 - (void)viewDidLoad
 {
@@ -200,11 +211,29 @@
     }
 }
 
+- (void)setStore:(SJODataStore *)store {
+	_store = store;
+	self.managedObjectContext = store.mainContext;
+}
+
+- (NSString *)sectionKeyPathForSearchableFetchedResultsController:(SJOSearchableFetchedResultsController *)controller {
+	return nil;
+}
+
 - (NSFetchedResultsController *)newFetchedResultsControllerWithSearch:(NSString *)searchString
 {
+	NSString *sectionKeyPath;
+    /**
+     *  Only use a sectionKeyPath when not searching becuase:
+	 *		- A a section index should not be shown while searching, and
+	 *		- B executed fetch requests take longer when sections are used. When searching this is especially noticable as a new fetch request is executed upon each key stroke during search.
+     */
+    if (!self.searchIsActive) {
+        sectionKeyPath = [self sectionKeyPathForSearchableFetchedResultsController:self];
+    }
     NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:[self fetchRequestForSearch:searchString]
-                                                                                               managedObjectContext:self.store.mainContext
-                                                                                                 sectionNameKeyPath:nil
+                                                                                               managedObjectContext:self.managedObjectContext
+                                                                                                 sectionNameKeyPath:sectionKeyPath
                                                                                                           cacheName:nil];
     fetchedResultsController.delegate = self;
     NSError *error = nil;
@@ -243,6 +272,7 @@
 
 - (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
 {
+	self.searchIsActive = YES;
 	[searchBar sizeToFit];
 	[searchBar setShowsCancelButton:YES animated:YES];
 	return YES;
@@ -257,6 +287,7 @@
 
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
+	self.searchIsActive = NO;
     [self searchBarShouldEndEditing:searchBar];
 }
 
